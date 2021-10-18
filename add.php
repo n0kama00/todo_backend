@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Max-Age: 3600');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST']==="OPTIONS") {
+if ($_SERVER['REQUEST_METHOD']==="OPTIONS") {
     return 0;
 }
 
@@ -26,4 +26,5 @@ try {
 } catch (PDOException $pdoex) {
     header('HTTP/1.1. 500 Internal Server Error');
     $error = array('error' => $pdoex->getMessage());
+    print json_encode($error);
 }
